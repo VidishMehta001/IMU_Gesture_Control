@@ -1,0 +1,4 @@
+
+[submodule "micro_ros_setup"]
+	path = micro_ros_setup
+	url = git@github.com:micro-ROS/micro_ros_setup.git
