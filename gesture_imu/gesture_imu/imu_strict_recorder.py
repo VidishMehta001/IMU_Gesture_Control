@@ -24,7 +24,7 @@ class ImuSubscriber(Node):
             self.listener_callback,
             20)
         self.subscription
-        parameter_descriptor = ParameterDescriptor(description='Sets the label of the recorder. 0: None, 1: Forward, 2: Backward, 3: Left, 4" Right, 5:,Clockwise, 6: C-Clockwise')
+        parameter_descriptor = ParameterDescriptor(description='Sets the label of the recorder. 0: None, 1: Forward, 2: Backward, 3: Left, 4" Right, 5:,Clockwise, 6: C-Clockwise, 7: Stop')
         self.declare_parameter('label', 1, parameter_descriptor)
 
         self.get_logger().info('Creating Recorder...') 
@@ -85,7 +85,7 @@ class ImuSubscriber(Node):
 
 class movementRecorder:
     def __init__(self):
-        self.movements = ['None','Forward','Backward','Left','Right','Clockwise','C-Clockwise']
+        self.movements = ['None','Forward','Backward','Left','Right','Clockwise','C-Clockwise', 'Stop']
         self.mov_stack = []
         self.font = cv2.FONT_HERSHEY_SIMPLEX
 
