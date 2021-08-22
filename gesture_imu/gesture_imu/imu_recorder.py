@@ -8,6 +8,7 @@ import cv2
 import numpy as np
 import random
 import time
+import os 
 
 class ImuSubscriber(Node):
     def __init__(self):
@@ -26,11 +27,18 @@ class ImuSubscriber(Node):
 
     def listener_callback(self,msg):
         if self.i > 1000:
-            with open('sample_list.pkl', 'wb') as f:
+            try:
+                files = os.listdir('data/simple')
+                files = [int(x.split('.')[0]) for x in files]
+                listname = 'data/simple/'+str(max(files)+1)
+            except:
+                listname = 'data/simple/1'
+            with open(listname+'.pkl', 'wb') as f:
                 pickle.dump([self.recorded_list ,self.recorded_label],f)
-            self.get_logger().info('Saved stuff...')
+            self.get_logger().info('Saved stuff...%s' % (listname))
+            cv2.destroyWindow('Frame')
             self.destroy_node()
-            return
+            exit()
         label = self.mov_rand.start_vid()
         self.recorded_list.append(list(msg.data))
         self.recorded_label.append(label)
@@ -40,7 +48,7 @@ class ImuSubscriber(Node):
 
 class movementRandomiser:
     def __init__(self):
-        self.movements = ['NONE','UP','DOWN','LEFT','RIGHT']
+        self.movements = ['None','Forward','Backward','Left','Right','Clockwise','C-Clockwise']
         self.mov_idx = list(range(len(self.movements)))
         self.movement_max = 1
 

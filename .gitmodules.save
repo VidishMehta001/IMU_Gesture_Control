@@ -1,0 +1,4 @@
+
+[submodule "rtabmap_ros"]
+	path = rtabmap_ros
+	url = git@github.com:mecarill/rtabmap_ros.gitmicro_ros_setup

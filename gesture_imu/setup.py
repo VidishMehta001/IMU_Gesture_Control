@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'imu_recorder = gesture_imu.imu_recorder:main',
+            'imu_strict_recorder = gesture_imu.imu_strict_recorder:main',
             'imu_recorder_magnitute = gesture_imu.imu_recorder_magnitute:main'
         ],
     },
